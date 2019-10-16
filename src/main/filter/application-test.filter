@@ -1,0 +1,18 @@
+server.port=8190
+
+swagger.ui.enable=true
+
+## db
+db.minPoolSize=1
+db.maxPoolSize=5
+db.pay_center.username=explorer
+db.pay_center.password=123456
+db.pay_center.url=jdbc:mysql://127.0.0.1:3306/dapp_pay_center?useUnicode=true&characterEncoding=UTF8
+
+## redis
+redis.host=127.0.0.1
+redis.port=6379
+redis.password=
+
+thirdparty.api.host.neb=https://testnet.nebulas.io
+thirdparty.api.host.neb_testnet=https://testnet.nebulas.io

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <springProfile name="dev">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d{ISO8601} [%thread] [%-5level] %logger - %msg%n</pattern>
+            </layout>
+        </appender>
+
+        <logger name="com.atomikos" level="info"/>
+        <logger name="org.springframework" level="info"/>
+        <logger name="org.mybatis" level="info"/>
+        <logger name="org.apache" level="info"/>
+        <logger name="ch.qos.logback" level="info"/>
+
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="test,product">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d{ISO8601} [%thread] [%-5level] %logger - %msg%n</pattern>
+            </layout>
+        </appender>
+
+        <appender name="console_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>/home/app/nebulasio/logs/dapp-pay-center/console.log</file>
+            <!--<Prudent>true</Prudent>-->
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>/home/app/nebulasio/logs/dapp-pay-center/console.%d{yyyy-MM-dd}.log</fileNamePattern>
+                <maxHistory>90</maxHistory>
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{HH:mm:ss.SSS} %-5level [%logger] - %msg%n</pattern>
+                <immediateFlush>true</immediateFlush>
+                <charset class="java.nio.charset.Charset">UTF-8</charset>
+            </encoder>
+        </appender>
+
+        <logger name="com.atomikos" level="info"/>
+        <logger name="org.springframework" level="info"/>
+        <logger name="org.mybatis" level="info"/>
+        <logger name="org.apache" level="info"/>
+        <logger name="ch.qos.logback" level="info"/>
+
+        <root level="INFO">
+            <appender-ref ref="console_log"/>
+        </root>
+    </springProfile>
+
+</configuration>
